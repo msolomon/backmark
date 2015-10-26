@@ -1,4 +1,8 @@
-.PHONY: all chrome
+.PHONY: watch all chrome notifyfailure clean
+
+watch:
+	# you must install entr to watch for changes
+	find . -maxdepth 1 -not -type d | entr ${MAKE} all
 
 all:
 	${MAKE} chrome || ${MAKE} notifyfailure
