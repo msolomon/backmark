@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "BackMark - Back up the pages you bookmark",
   "short_name": "BackMark",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Stave off link rot. Automatically back up the pages you bookmark.",
   "icons": {
     "128": "backmark.png"
