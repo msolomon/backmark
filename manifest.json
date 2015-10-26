@@ -1,0 +1,52 @@
+{
+  "manifest_version": 2,
+  "name": "BackMark - Back up the pages you bookmark",
+  "version": "1.0.0",
+  "description": "Stave off link rot. Automatically back up the pages you bookmark.",
+  "icons": {
+    "128": "icon-128.png"
+  },
+  "permissions": [
+    "alarms",
+    "bookmarks",
+    "downloads",
+    "history",
+    "pageCapture",
+    "storage",
+    "tabs",
+    "unlimitedStorage",
+    "chrome://favicon/*"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+    "background": {
+    "scripts": [
+      "lib/bluebird.min.js",
+      "lib/lodash.min.js",
+      "lib/zip.js",
+      "lib/z-worker.js",
+      "lib/deflate.js",
+      "lib/inflate.js",
+      "lib/jquery-2.1.4.min.js",
+      "common.js.map",
+      "common.js",
+      "backmark.js.map",
+      "backmark.js"
+    ],
+    "persistent": false
+  },
+  "web_accessible_resources": [
+    "*.map"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "19": "icon-128.png",
+      "38": "icon-128.png"
+    },
+    "default_title": "Backmark",
+    "default_popup": "popup.html"
+  },
+  "author": "Mike Solomon"
+}
