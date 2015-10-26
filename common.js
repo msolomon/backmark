@@ -43,10 +43,6 @@ chromePromisify(chrome.pageCapture);
 
 chromePromisify(chrome.runtime);
 
-if (zip) {
-  zip.workerScriptsPath = "lib/";
-}
-
 fetchContent = function(url) {
   return Promise.resolve($.get(url)).then(function(jqXhr) {
     return jqXhr;

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "BackMark - Back up the pages you bookmark",
   "short_name": "BackMark",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Stave off link rot. Automatically back up the pages you bookmark.",
   "icons": {
     "128": "backmark.png"
@@ -20,13 +20,14 @@
   ],
     "background": {
     "scripts": [
-      "lib/bluebird.min.js",
-      "lib/lodash.min.js",
-      "lib/zip.js",
-      "lib/z-worker.js",
-      "lib/deflate.js",
-      "lib/inflate.js",
-      "lib/jquery-2.1.4.min.js",
+      "bluebird.min.js",
+      "lodash.min.js",
+      "zip.js",
+      "z-worker.js",
+      "deflate.js",
+      "inflate.js",
+      "jquery-2.1.4.min.js",
+
       "common.js.map",
       "common.js",
       "backmark.js.map",

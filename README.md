@@ -14,7 +14,7 @@ Whenever you add a bookmark, Backmark will do its best to save a copy for you. Y
 
 ### Chrome
 
-[Visit the Chrome web store](https://chrome.google.com/webstore) and install the extension.
+Visit the [Chrome web store page](https://chrome.google.com/webstore/detail/backmark-back-up-the-page/cmbflafdbcidlkkdhbmechbcpmnbcfjf) and install the extension.
 
 
 ## Usage

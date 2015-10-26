@@ -10,7 +10,7 @@ all:
 chrome: backmark.js popup.js common.js acceptDanger.js templates.js
 	rm -rf build/chrome
 	mkdir -p build/chrome
-	cp -r lib *.* build/chrome/
+	cp -r lib/*.* *.* build/chrome/
 	rm -f build/chrome/extension.zip
 	rm -f build/chrome/screenshot.png
 	cd build/chrome && zip -1 extension.zip *

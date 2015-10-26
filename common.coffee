@@ -24,9 +24,6 @@ chromePromisify(chrome.storage.local)
 chromePromisify(chrome.pageCapture)
 chromePromisify(chrome.runtime)
 
-# set up zip path
-if zip then zip.workerScriptsPath = "lib/"
-
 # ajax file contents
 fetchContent = (url) -> Promise.resolve($.get(url)).then (jqXhr) -> jqXhr
 # ajax file contents as blob
