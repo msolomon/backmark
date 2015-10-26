@@ -1,0 +1,29 @@
+<tr>
+  <td></td>
+  <td>
+    <input class='check' type=checkbox></input>
+  </td>
+  <td>
+  <a class='download' data-url='{{url}}' href='null'>
+    {{#if savedAt}}
+      &#x2713;
+    {{else}}
+      {{#if failedAt}}
+        &#x2717;
+      {{else}}
+        &#x21bb;
+      {{/if}}
+    {{/if}}
+  </a>
+  </td>
+  <td>
+    <a href='{{url}}' target='_blank'><img class='favicon' src='{{favicon}}'></img></a>
+  </td>
+  <td>
+    {{#if savedAt}}
+      <a class='downloadbackup' data-url='{{url}}' href='null'>{{#if title}}{{title}}{{else}}{{url}}{{/if}}</a>
+    {{else}}
+      {{#if title}}{{title}}{{else}}{{url}}{{/if}}
+    {{/if}}
+  </td>
+</tr>
