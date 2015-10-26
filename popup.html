@@ -23,7 +23,6 @@
   }
 
   table {
-    min-width: 768px;
     counter-reset: rowNumber;
     text-align: center;
   }
@@ -114,6 +113,21 @@ table tr:last-child td:last-child {
 table tr:hover td {
   background: #f2f2f2;
 }
+
+dialog {
+  font-size: medium;
+  border-radius: 3px;
+}
+
+dialog button {
+  font-size: medium;
+  border-radius: 3px;
+  background: #eee;
+}
+
+dialog p {
+  margin: 1em;
+}
 </style>
 
 
@@ -127,6 +141,7 @@ table tr:hover td {
   <button id='start-backup'>Back up selected</button>
   <button id='start-download'>Download selected</button>
   <button id='reset'>Clear all data</button>
+  <button id='tabify'>Open in tab</button>
 </div>
 
 
@@ -137,6 +152,13 @@ table tr:hover td {
     <p>This will erase all of Backmark's data.</p>
     <button id="erase">Erase all bookmark backups and settings</button>
     <button id="close">Cancel</button>
+</dialog>
+
+<dialog id="first-run">
+    <h3>Welcome to BackMark!</h3>
+    <p>Run your initial bookmark backup by clicking "Back up missing". Tabs will open and close as it runs.</p>
+    <p>BackMark will automatically backup new bookmarks as they are created.</p><p>You can find BackMark in the upper right corner of Chrome. Happy BackMarking!</p>
+    <button id="first-run-close">Get to the backups</button>
 </dialog>
 
 

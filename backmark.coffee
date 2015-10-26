@@ -1,7 +1,9 @@
 # register event listeners
-chrome.runtime.onInstalled.addListener (event) ->
-    console.log "just installed, running full backup"
-    runMissingBackup()
+chrome.runtime.onInstalled.addListener (details) ->
+  console.log(details)
+  if details.reason == 'install'
+    console.log "just installed, prompting user"
+    chrome.tabs.createAsync({url: 'popup.html?reason=firstrun'})
 
 chrome.bookmarks.onCreated.addListener (id, bookmark) ->
   console.log "bookmark created, running full backup"

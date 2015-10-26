@@ -82,6 +82,19 @@ setUpSettingHandlers = () ->
     dialog.showModal()
   )
 
+  # first-run dialog
+  $('#first-run-close').on('click', (evt) -> $('#first-run').get(0).close())
+
+  # open in tab
+  $('#tabify').on('click', (evt) ->
+    chrome.tabs.createAsync({url: 'popup.html'})
+  )
+
+showDialogIfFirstRun = () ->
+  if window.location.href.endsWith('firstrun')
+    $('#first-run').get(0).show()
+
 setUpSettingHandlers()
 placeElements()
+showDialogIfFirstRun()
 
