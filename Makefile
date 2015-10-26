@@ -7,10 +7,10 @@ watch:
 all:
 	${MAKE} chrome || ${MAKE} notifyfailure
 
-chrome: backmark.js popup.js common.js acceptDanger.js templates.js
+chrome: backmark.js popup.js common.js templates.js
 	rm -rf build/chrome
 	mkdir -p build/chrome
-	cp -r lib/*.* *.* build/chrome/
+	cp -r lib/*.* assets/*.png *.* build/chrome/
 	rm -f build/chrome/extension.zip
 	rm -f build/chrome/screenshot.png
 	cd build/chrome && zip -1 extension.zip *
@@ -23,9 +23,6 @@ popup.js: popup.coffee
 
 common.js: common.coffee
 	coffee -c -b -m common.coffee
-
-acceptDanger.js: acceptDanger.coffee
-	coffee -c -b -m acceptDanger.coffee
 
 templates.js: popup-bookmark.handlebars *.handlebars
 	# you must install handlebars with npm to precompile templates

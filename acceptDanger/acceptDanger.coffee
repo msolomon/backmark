@@ -1,3 +1,7 @@
+
+# this is leftover scraps from an attempt to use the acceptDanger API to authorise MHTML downloads.
+# it seems to just fail. maybe this will be of use for anyone trying to fix this
+
 # chrome.downloads.onChanged.addListener((delta) -> console.log('download changed:', delta.previous, '->', delta.current, delta))
 
 chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
@@ -10,7 +14,6 @@ chrome.runtime.onMessage.addListener (request, sender, sendResponse) ->
       else console.log('no error')
 
 
-  # this is carefully constructed. don't try to make it use promises or anything fancy
   if request.msg == 'download'
     $("#downloads").append("<li><a href='"+request.url+"' download='"+request.filename+"'>"+request.filename+"</a></li>")
     chrome.downloads.download({
