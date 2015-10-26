@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "Stave off link rot. Automatically back up the pages you bookmark.",
   "icons": {
-    "128": "icon-128.png"
+    "128": "backmark.png"
   },
   "permissions": [
     "alarms",
@@ -17,10 +17,6 @@
     "unlimitedStorage",
     "chrome://favicon/*"
   ],
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  },
     "background": {
     "scripts": [
       "lib/bluebird.min.js",
@@ -42,8 +38,8 @@
   ],
   "browser_action": {
     "default_icon": {
-      "19": "icon-128.png",
-      "38": "icon-128.png"
+      "19": "backmark.png",
+      "38": "backmark.png"
     },
     "default_title": "Backmark",
     "default_popup": "popup.html"
