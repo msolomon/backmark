@@ -34,43 +34,47 @@ chrome.bookmarks.onMoved.addListener(function(id, info) {
 
 chrome.runtime.onMessage.addListener(function(req, sender, sendResponse) {
   var urls;
-  if (req.msg === 'partialBackup') {
-    urls = req.urls;
-    console.log('user requested backup of:', urls);
-    return getBookmarks().then(function(bookmarks) {
-      return _.filter(bookmarks, function(b) {
-        return _.includes(urls, b.url);
+  switch (req.msg) {
+    case 'download':
+      return mkTabLoaded(req.tabId).then(function(tab) {
+        return chrome.tabs.sendMessage(tab.id, req.acceptDangerDownload);
       });
-    }).then(function(bookmarks) {
-      return runBackup(bookmarks, true);
-    }).then(function() {
-      console.log('responding');
-      return sendResponse({
-        msg: 'backupComplete'
+    case 'partialBackup':
+      urls = req.urls;
+      console.log('user requested backup of:', urls);
+      return getBookmarks().then(function(bookmarks) {
+        return _.filter(bookmarks, function(b) {
+          return _.includes(urls, b.url);
+        });
+      }).then(function(bookmarks) {
+        return runBackup(bookmarks, true);
+      }).then(function() {
+        console.log('responding');
+        return sendResponse({
+          msg: 'backupComplete'
+        });
       });
-    });
-  } else if (req.msg === 'missingBackup') {
-    console.log('user requested missing backup:', urls);
-    return runMissingBackup().then(function() {
-      console.log('responding');
-      return sendResponse({
-        msg: 'backupComplete'
+    case 'missingBackup':
+      console.log('user requested missing backup:', urls);
+      return runMissingBackup().then(function() {
+        console.log('responding');
+        return sendResponse({
+          msg: 'backupComplete'
+        });
       });
-    });
-  } else if (req.msg === 'partialDownload') {
-    urls = req.urls;
-    console.log('user requested download of:', urls);
-    return getPrefixed(urls, 'bookmark::').then(function(urlsToUris) {
-      return mkFullBundle(urlsToUris);
-    }).then(function(bundle) {
-      console.log('bundled', bundle);
-      return downloadPage(bundle, "backmark");
-    }).then(function() {
-      console.log('responding');
-      return sendResponse({
-        msg: 'downloadComplete'
+    case 'partialDownload':
+      return chrome.tabs.createAsync({
+        url: 'acceptDanger.html',
+        active: true,
+        selected: true
+      }).then(function(tab) {
+        return mkTabLoaded(tab.id);
+      }).then(function(tab) {
+        return chrome.tabs.sendMessage(tab.id, {
+          msg: 'acceptDanger-partialDownload',
+          urls: req.urls
+        });
       });
-    });
   }
 });
 

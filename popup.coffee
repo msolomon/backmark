@@ -12,7 +12,8 @@ setUpDynamicLinks = () ->
   $('.downloadbackup').on('click', (evt) ->
     evt.preventDefault()
     url = evt.target.dataset.url
-    getPage(url).then (dataUri) -> downloadPage(dataUri, url)
+    # getPage(url).then (dataUri) -> downloadPage(dataUri, url)
+    downloadPageWithAccept(url)
   )
 
   $('.download').on('click', (evt) ->

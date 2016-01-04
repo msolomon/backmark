@@ -19,9 +19,7 @@ setUpDynamicLinks = function() {
     var url;
     evt.preventDefault();
     url = evt.target.dataset.url;
-    return getPage(url).then(function(dataUri) {
-      return downloadPage(dataUri, url);
-    });
+    return downloadPageWithAccept(url);
   });
   return $('.download').on('click', function(evt) {
     var url;

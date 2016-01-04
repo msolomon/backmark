@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "BackMark - Back up the pages you bookmark",
   "short_name": "BackMark",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Stave off link rot. Automatically back up the pages you bookmark.",
   "icons": {
     "128": "backmark.png"
@@ -16,7 +16,10 @@
     "storage",
     "tabs",
     "unlimitedStorage",
-    "chrome://favicon/*"
+    "chrome://favicon/*",
+    "file://*/*",
+    "http://*/*",
+    "https://*/*"
   ],
     "background": {
     "scripts": [
@@ -28,15 +31,14 @@
       "inflate.js",
       "jquery-2.1.4.min.js",
 
-      "common.js.map",
       "common.js",
-      "backmark.js.map",
       "backmark.js"
     ],
     "persistent": false
   },
   "web_accessible_resources": [
-    "*.map"
+    "*.map",
+    "style.css"
   ],
   "browser_action": {
     "default_icon": {

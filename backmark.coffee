@@ -24,23 +24,33 @@ chrome.bookmarks.onMoved.addListener (id, info) ->
   runMissingBackup()
 
 chrome.runtime.onMessage.addListener (req, sender, sendResponse) ->
-    if req.msg == 'partialBackup'
+    switch req.msg
+      when 'download'
+        mkTabLoaded(req.tabId)
+          .then (tab) -> chrome.tabs.sendMessage(tab.id, req.acceptDangerDownload)
+
+      when 'partialBackup'
         urls = req.urls
         console.log('user requested backup of:', urls)
         getBookmarks()
           .then (bookmarks) -> _.filter(bookmarks, (b) -> _.includes(urls, b.url))
           .then (bookmarks) -> runBackup(bookmarks, true)
           .then () -> console.log('responding'); sendResponse({msg: 'backupComplete'})
-    else if req.msg == 'missingBackup'
+
+      when 'missingBackup'
         console.log('user requested missing backup:', urls)
         runMissingBackup()
           .then () -> console.log('responding'); sendResponse({msg: 'backupComplete'})
-    else if req.msg == 'partialDownload'
-        urls = req.urls
-        console.log('user requested download of:', urls)
-        getPrefixed(urls, 'bookmark::')
-          .then (urlsToUris) -> mkFullBundle(urlsToUris)
-          .then (bundle) ->
-            console.log('bundled', bundle)
-            downloadPage(bundle, "backmark")
-          .then () -> console.log('responding'); sendResponse({msg: 'downloadComplete'})
+
+      when 'partialDownload'
+        chrome.tabs.createAsync({
+            url: 'acceptDanger.html',
+            active: true,
+            selected: true
+        })
+        .then (tab) -> mkTabLoaded(tab.id)
+        .then (tab) ->
+          chrome.tabs.sendMessage(tab.id, {
+            msg: 'acceptDanger-partialDownload',
+            urls: req.urls
+          })

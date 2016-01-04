@@ -7,7 +7,7 @@ watch:
 all:
 	${MAKE} chrome || ${MAKE} notifyfailure
 
-chrome: backmark.js popup.js common.js templates.js
+chrome: backmark.js popup.js common.js templates.js acceptDanger.js detector.js
 	rm -rf build/chrome
 	mkdir -p build/chrome
 	cp -r lib/*.* assets/*.png *.* build/chrome/
@@ -24,9 +24,19 @@ popup.js: popup.coffee
 common.js: common.coffee
 	coffee -c -b -m common.coffee
 
+acceptDanger.js: acceptDanger.coffee
+	coffee -c -b -m acceptDanger.coffee
+
+detect.js: detect.coffee
+	coffee -c -b -m detect.coffee
+
 templates.js: popup-bookmark.handlebars *.handlebars
 	# you must install handlebars with npm to precompile templates
 	handlebars -m *.handlebars -f templates.js
+
+detector.js: lib/jquery-2.1.4.min.js lib/lodash.min.js detect.js
+	# concatenates deps at top for injection
+	cat lib/jquery-2.1.4.min.js lib/lodash.min.js detect.js > detector.js
 
 notifyfailure:
 	osascript -e 'display notification "failed" with title "make"'

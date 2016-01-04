@@ -4,7 +4,7 @@
     <input class='check' type=checkbox></input>
   </td>
   <td>
-  <a class='download' data-url='{{url}}' href='null'>
+  <a class='download' data-url='{{url}}' href='backup'>
     {{#if savedAt}}
       &#x2713;
     {{else}}
@@ -21,7 +21,7 @@
   </td>
   <td>
     {{#if savedAt}}
-      <a class='downloadbackup' data-url='{{url}}' href='null'>{{#if title}}{{title}}{{else}}{{url}}{{/if}}</a>
+      <a class='downloadbackup' data-url='{{url}}' href='downloadbackup'>{{#if title}}{{title}}{{else}}{{url}}{{/if}}</a>
     {{else}}
       {{#if title}}{{title}}{{else}}{{url}}{{/if}}
     {{/if}}
