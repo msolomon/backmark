@@ -1,3 +1,5 @@
+# this is the background script, basically the "engine" that runs on demand
+
 # register event listeners
 chrome.runtime.onInstalled.addListener (details) ->
   if details.reason == 'install'

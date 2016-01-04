@@ -1,3 +1,5 @@
+## the download page. its primary purpose is to let you accept "dangerous" downloads
+
 chrome.downloads.onChanged.addListener((delta) -> console.log('download changed:', delta.previous, '->', delta.current, delta))
 chrome.downloads.onChanged.addListener((delta) -> if delta.hasOwnProperty('danger') then chrome.downloads.acceptDanger(delta.id, () -> console.log('got error', chrome.runtime.lastError.message)))
 

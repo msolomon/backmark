@@ -1,4 +1,4 @@
-# injected into page to support e.g. pdfs as well as html bookmarks
+## injected into page to support e.g. pdfs as well as html bookmarks
 
 # try to find plugin embeds, such as used to display PDFs in chrome
 embed = _.filter($('embed#plugin, embed[name="plugin"]'), (ele) ->

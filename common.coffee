@@ -1,3 +1,5 @@
+## a bunch of functions used by other scripts
+
 # how to transform a callback-driven chrome api into a promise-driven api
 ChromePromisifier = (originalMethod) ->
   () ->
